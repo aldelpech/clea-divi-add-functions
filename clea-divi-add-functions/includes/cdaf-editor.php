@@ -71,7 +71,7 @@ $custom_colours = '
 	$init['textcolor_map'] = '['.$custom_colors.','.$default_colors.']';
 	
 	// debug 
-	echo "<p>" . $custom_colours . "</p>" ;
+	// echo "<p>" . $custom_colours . "</p>" ;
 	// enable 6th row for custom colours in grid
 	$init['textcolor_rows'] = 6;
 
