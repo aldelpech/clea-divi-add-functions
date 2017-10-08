@@ -8,17 +8,32 @@ function cdaf_editor_colors($init) {
 	$cdaf_colors = cdaf_read_color_palette() ; // an array of hex codes beginning with #
 	$index = 0 ;
 	$default_colors =  array();
+	
+	// what is the link color for text ?
+	$accent_color = esc_html( et_get_option( 'accent_color', '#2ea3f2' ) );
+	$link_color = et_get_option( 'link_color', $accent_color );
+	// remove # in color code
+	$link_color = ltrim( $link_color, "#" ) ;
+	// met en majuscule le code HEX
+	$link_color = strtoupper( $link_color );		
 
 	// transformer en array avec code hex sans # et nom sous forme "color n"
 	foreach ( $cdaf_colors as $color ) {
-		
+
 		// remove # in color code
 		$color = ltrim( $color, "#" ) ;
 		// met en majuscule le code HEX
-		$color = strtoupper( $color );
-		$default_colors[] = array( $color, 'color ' . $index  )  ;
+		$color = strtoupper( $color );	
+
+		if ( !( $link_color == $color ) ) {
+
+			// the text color palette should not include the link color
+			$default_colors[] = array( $color, 'color ' . $index  )  ;
+			
+			$index++ ; 			
 		
-		$index++ ; 						
+		}
+					
 	}
 	
 	// the only way I found to have a string which works....
