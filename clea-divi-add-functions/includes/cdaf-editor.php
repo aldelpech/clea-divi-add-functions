@@ -1,67 +1,15 @@
 <?php
 
 
-
-/*	
-	$cdaf_colors = cdaf_read_color_palette() ; 
-	$cdaf_nb_color = count( $cdaf_colors ) ;
-	$index = 1 ;
-	$custom_colours =  "'";
-
-	foreach ( $cdaf_colors as $color ) {
-		
-		// remove # in color code
-		$color = ltrim( $color, "#" ) ;
-		// met en majuscule le code
-		$color = strtoupper( $color );
-		
-		if ( ($index < 7 ) && ( $index <= $cdaf_nb_color ) ) {
-			
-			if ( !( $color == "FFFFFF" ) ) {
-				
-				$custom_colours .=  '"' . $color . '", "Color ' . $index . '",' . '\r\n';
-				$index++ ;
-			}
-			
-		} else if ( ($index == 7 ) && ( $index <= $cdaf_nb_color ) ){
-
-			// pas de , à la fin 
-			$custom_colours .=  '"' . $color . '", "Color ' . $index . '"' . '\r\n';
-			$index++ ;
-
-		} else {
-			// on ne met pas plus de couleurs que 7 ou que ce qui a été défini dans la palette par défaut de divi
-			break ; // exit foreach loop
-		}
-			
-							
-	}
-	
-	$custom_colours .=  "'";
-
-*/	
-
-
 function cdaf_editor_colors($init) {
 
-	// https://wordpress.stackexchange.com/questions/233450/how-do-you-add-custom-color-swatches-to-all-wysiwyg-editors
-    /* $custom_colours = '
-        "3366FF", "Color 1 name",
-        "CCFFCC", "Color 2 name",
-        "FFFF00", "Color 3 name",
-        "99CC00", "Color 4 name",
-        "FF0000", "Color 5 name",
-        "FF99CC", "Color 6 name",
-        "CCFFFF", "Color 7 name"
-    ';
-*/
-
-
-	$cdaf_colors = cdaf_read_color_palette() ; 
-	$cdaf_nb_color = count( $cdaf_colors ) ;
+	// heavily modified code coming from https://wordpress.stackexchange.com/questions/233450/how-do-you-add-custom-color-swatches-to-all-wysiwyg-editors
+	
+	$cdaf_colors = cdaf_read_color_palette() ; // an array of hex codes beginning with #
 	$index = 0 ;
 	$default_colors =  array();
 
+	// transformer en array avec code hex sans # et nom sous forme "color n"
 	foreach ( $cdaf_colors as $color ) {
 		
 		// remove # in color code
@@ -73,13 +21,11 @@ function cdaf_editor_colors($init) {
 		$index++ ; 						
 	}
 	
-$custom_colours = wp_json_encode( $default_colors ) ;
-$replace = array( "[", "]") ; // we don't want these in the final string
-$custom_colours = str_replace($replace, "", $custom_colours );
-// $custom_colours = "'" . $custom_colours . "'" ;
-
-
-$custom_colours_a = '"423432","color 0","FFFFFF","color 1","4C858D","color 2","ED693B","color 3","F28A2B","color 4","FAC079","color 5","F6DB6B","color 6","A60F65","color 7"' ;
+	// the only way I found to have a string which works....
+	// the string shoulr be like this : '"423432","color 0","FFFFFF","color 1","4C858D","color 2","ED693B","color 3","F28A2B","color 4","FAC079","color 5","F6DB6B","color 6","A60F65","color 7"' 
+	$custom_colours = wp_json_encode( $default_colors ) ;
+	$replace = array( "[", "]") ; // we don't want these in the final string
+	$custom_colours = str_replace($replace, "", $custom_colours );
 
     // build colour grid default+custom colors
     $init['textcolor_map'] = '['.$custom_colours.']';
@@ -88,9 +34,9 @@ $custom_colours_a = '"423432","color 0","FFFFFF","color 1","4C858D","color 2","E
     // 8 swatches per row
     $init['textcolor_rows'] = 1;
 
-	// debug 
-	echo "<p>" . $custom_colours . "</p>" ;
-	echo "<p>A " . $custom_colours_a . "</p>" ;
+	// debug will echo in the footer of the editor ! 
+	//echo "<p>" . $custom_colours . "</p>" ;
+
     return $init;
 }
 add_filter('tiny_mce_before_init', 'cdaf_editor_colors');
