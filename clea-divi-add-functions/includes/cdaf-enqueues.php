@@ -13,11 +13,12 @@ function cdaf_divi_enqueue_scripts() {
 		wp_enqueue_style( 'cdaf-stylesheet', CDAF_DIR_URL . 'css/clea-divi-add-functions.css' );
 		
 		$accent_color = esc_html( et_get_option( 'accent_color', '#2ea3f2' ) );
-		$link_color = et_get_option( 'link_color', $accent_color );
+		// sanitize_hex_color vérifie que la valeur ressemble bien à #FFFFFF.
+		$link_color = sanitize_hex_color( et_get_option( 'link_color', '#2ea3f2' ) );
 		
 		// there must be an extra } at the end of the custom_css string...
-		$custom_css = "#left-area .post-meta a[rel='category tag'] {color: {$link_color};}}";
-		wp_add_inline_style( 'cdaf-stylesheet', $custom_css );	
+		$custom_css = "#left-area .post-meta a[rel='category tag'] { color: {$link_color} !important; }"; 
+		wp_add_inline_style( 'cdaf-stylesheet', wp_strip_all_tags( $custom_css ) );
 	}
 }
 ?>
