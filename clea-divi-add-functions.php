@@ -5,7 +5,8 @@
  * Plugin URI: https://github.com/aldelpech/clea-divi-add-functions
  * Author: Anne-Laure Delpech 
  * Author URI: https://knowledge.parcours-performance.com/
- * Version: 1.1
+ * Version: 1.2
+ 
  * License:      GPL2
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  * Tags: divi, divi theme 
