@@ -8,12 +8,12 @@ function cdaf_last_modified_date() {
     $u_time = get_the_time('U'); 
     $u_modified_time = get_the_modified_time('U'); 
 
-    // On n'affiche que si la date de modification est strictement supérieure à la date de publication
     if ($u_modified_time > $u_time) {
-        return ' | Mis à jour le ' . get_the_modified_date('j F Y');
+        // esc_html sécurise la chaîne de caractères avant l'affichage
+        return ' | ' . esc_html__( 'Mis à jour le', 'cdaf' ) . ' ' . esc_html(get_the_modified_date('j F Y'));
     }
     
-    return ''; // Renvoie vide si pas de modif
+    return ''; // renvoie vide si pas de mise à jour
 }
 add_shortcode('date_maj', 'cdaf_last_modified_date');
 
