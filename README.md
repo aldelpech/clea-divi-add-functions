@@ -2,57 +2,33 @@
 Contributors: Anne-Laure Delpech
 Donate link: 
 Tags: divi, divi theme, 
-Requires at least: 3.8
-Tested up to: 4.8.2
+Tested up to: 6.9.1
 Stable tag: latest
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-== Description ==
+# Divi Add Functions (CDAF)
 
-Add useful functions to the Divi Theme: 
+Une extension WordPress personnalisée pour optimiser le thème Divi et l'expérience de rédaction.
 
-* find default color palette used by the Divi theme, as set by the admin (options, general tab)
-* find the Divi link_color option and use it for the categoy meta tags
-* change the editor text colors to the color palette set in Divi
-* remove the H1 tag
+## ✨ Pourquoi cette extension ?
 
+Le thème Divi est puissant, mais il manque parfois de flexibilité sur certains détails techniques ou SEO. Cette extension centralise les ajustements nécessaires pour le site **Parcours Performance**.
 
-NOTE: We are not affiliated with Elegant Themes, this is an unofficial Add-On
+## 🛠 Fonctionnalités
 
-= Requirements =
+* **Gestion des Dates :** Ajout du shortcode `[date_maj]` qui affiche dynamiquement la date de dernière modification (uniquement si elle diffère de la publication).
+* **Harmonisation des Couleurs :** La palette de couleurs définie dans Divi est automatiquement injectée dans l'éditeur classique ET dans l'éditeur de blocs Gutenberg.
+* **Contrôle SEO :** Retrait du format "Titre 1" (H1) dans l'éditeur pour garantir qu'un seul H1 (le titre de l'article) soit présent par page.
+* **Styles Dynamiques :** Application automatique de la couleur de lien du site aux méta-données de catégories.
 
-This plugin works with Divi by Elegant Themes,  If you don't have this theme installed, this plugin won't work.
+## 🚀 Utilisation
 
-**Do you want to contribute or help improving this plugin?**
+1. Activez l'extension dans WordPress.
+2. Dans le **Divi Theme Builder**, ajoutez un module texte avec :  
+   `Publié le [Contenu Dynamique : Date de publication] [date_maj]`
 
-You can find it on GitHub: [https://github.com/aldelpech/clea-divi-add-functions)
+## 📋 Prérequis
 
-**You can find our other plugins and projects on GitHub:**
-
-[https://github.com/aldelpech/)
-
-Please feel free to contribute, help or recommend any new features for our plugins, themes and other projects.
-
-**Do you want to know more about me?**
-
-Visit our website: [Knowledge.parcours-performance.com, in french](https://knowledge.parcours-performance.com/)
-
-== Installation ==
-
-
-
-== Frequently Asked Questions ==
-
-= Q1 =
-
-Answer
-
-
-== Changelog ==
-
-
-= 1.0 =
-
-* First Version.
-
+* WordPress 5.0+
+* Thème Divi (ou Thème Enfant)
